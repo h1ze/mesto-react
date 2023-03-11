@@ -3,6 +3,7 @@ import Main from "./Main.js";
 import Footer from "./Footer.js";
 import PopupWithForm from "./PopupWithForm.js";
 import EditProfilePopup from "./EditProfilePopup.js";
+import AddPlacePopup from "./AddPlacePopup.js";
 
 
 
@@ -13,7 +14,14 @@ function App() {
         <Header />
         <Main />
         <Footer />
-      <div className="popup popup_menu_profile">
+        <EditProfilePopup 
+          isOpen={false}
+        />
+        <AddPlacePopup
+          isOpen={true}
+        />
+    </div>
+    <div className="popup popup_menu_profile">
         <div className="popup__container">
           <button className="popup__close btn-shut-profile" type="button"></button>
           <div className="popup__content">
@@ -116,7 +124,6 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
     <div className="popup popup_menu_avatar">
       <div className="popup__container">
         <button className="popup__close btn-shut-avatar" type="button"></button>
