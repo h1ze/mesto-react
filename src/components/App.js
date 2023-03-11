@@ -1,5 +1,6 @@
 import Header from "./Header.js";
 import Main from "./Main.js";
+import Footer from "./Footer.js";
 
 
 function App() {
@@ -8,9 +9,7 @@ function App() {
       <div className="page__wrapper wrapper">
         <Header />
         <Main />
-        <footer className="footer">
-        <p className="footer__copyright">© 2020 Mesto Russia</p>
-        </footer>
+        <Footer />
       <div className="popup popup_menu_profile">
         <div className="popup__container">
           <button className="popup__close btn-shut-profile" type="button"></button>
@@ -23,10 +22,10 @@ function App() {
                 type="text"
                 value=""
                 name="name"
-                tabindex="1"
+                tabIndex="1"
                 placeholder="Имя"
-                minlength="2"
-                maxlength="40"
+                minLength="2"
+                maxLength="40"
                 required
                 />
               <span className="profile-name-error form__error"></span>
@@ -36,16 +35,16 @@ function App() {
                 type="text"
                 value=""
                 name="about"
-                tabindex="2"
+                tabIndex="2"
                 placeholder="О себе"
-                minlength="2"
-                maxlength="200"
+                minLength="2"
+                maxLength="200"
                 required
                 />
               <span className="profile-info-error form__error"></span>
               <button
                 className="form__button profile-submit"
-                type="submit" tabindex="3"
+                type="submit" tabIndex="3"
               >Сохранить</button>
             </form>
           </div>
@@ -63,10 +62,10 @@ function App() {
                 type="text"
                 value=""
                 name="name"
-                tabindex="1"
+                tabIndex="1"
                 placeholder="Название"
-                minlength="2"
-                maxlength="30"
+                minLength="2"
+                maxLength="30"
                 required
                 />
               <span className="card-title-error form__error"></span>
@@ -76,14 +75,14 @@ function App() {
                 type="url"
                 value=""
                 name="link"
-                tabindex="2"
+                tabIndex="2"
                 placeholder="Ссылка на картинку"
                 required
                 />
               <span className="card-url-error form__error"></span>
               <button
                 className="form__button card-submit"
-                type="submit" tabindex="3"
+                type="submit" tabIndex="3"
               >Сохранить</button>
             </form>
           </div>
@@ -108,7 +107,7 @@ function App() {
             <form className="popup__form form" name="delete-form">
               <button
                 className="form__button form__button_type_confirmation delete-submit"
-                type="submit" tabindex="1"
+                type="submit" tabIndex="1"
               >Да</button>
             </form>
           </div>
@@ -127,14 +126,14 @@ function App() {
               type="url"
               value=""
               name="avatar"
-              tabindex="1"
+              tabIndex="1"
               placeholder="Ссылка на картинку"
               required
               />
             <span className="profile-avatar-error form__error"></span>
             <button
               className="form__button avatar-submit"
-              type="submit" tabindex="2"
+              type="submit" tabIndex="2"
             >Сохранить</button>
           </form>
         </div>
