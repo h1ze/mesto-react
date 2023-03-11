@@ -1,18 +1,12 @@
-import logo from './logo.svg';
+import Header from "./Header.js";
 
 
 function App() {
   return (
     <div className="page">
       <div className="page__wrapper wrapper">
-      <header className="header">
-        <img
-          src='./images/logo.svg'
-          alt="Логотип проекта"
-          className="header__logo"
-          />
-      </header>
-      <main>
+        <Header />
+        <main>
         <section className="profile">
           <div className="profile__content">
             <div className="profile__avatar">
@@ -45,10 +39,10 @@ function App() {
           <ul className="elements__list">
           </ul>
         </section>
-      </main>
-      <footer className="footer">
+        </main>
+        <footer className="footer">
         <p className="footer__copyright">© 2020 Mesto Russia</p>
-      </footer>
+        </footer>
       <div className="popup popup_menu_profile">
         <div className="popup__container">
           <button className="popup__close btn-shut-profile" type="button"></button>
