@@ -1,11 +1,12 @@
-function PopupWithForm({name, title, children, handleCloseClick}) {
+function PopupWithForm({name, title, children, onClose, isOpen}) {
+    const popupStatus = isOpen ? "popup_opened" : "popup";
     return(
-        <div className={`popup popup_menu_${name}`}>
+        <div className={`${popupStatus} popup_menu_${name}`}>
             <div className="popup__container">
                 <button 
                     className="popup__close" 
                     type="button"
-                    onClick={handleCloseClick}
+                    onClick={onClose}
                 ></button>
                 <div className="popup__content">
                     <h2 className="popup__title">{title}</h2>
