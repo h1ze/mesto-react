@@ -1,6 +1,8 @@
-function ImagePopup({isOpen, onClose, selectedCard}) {
+function ImagePopup({onClose, selectedCard}) {
     return(
-        <div className={`${Object.keys(selectedCard).length !== 0 ? "popup_opened" : ""} popup popup_menu_image popup_background_darkest`}>
+        <div className={`${Object.keys(selectedCard).length !== 0 ? "popup_opened" : ""} popup popup_menu_image popup_background_darkest`}
+             onClick={onClose}
+        >
         <div className="popup__container">
           <button 
             className="popup__close btn-shut-image" 
