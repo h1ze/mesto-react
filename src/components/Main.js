@@ -1,4 +1,4 @@
-function Main({onEditProfile, onAddPlace}) {
+function Main({onEditProfile, onAddPlace, onEditAvatar}) {
     return(
         <main>
             <section className="profile">
@@ -9,7 +9,11 @@ function Main({onEditProfile, onAddPlace}) {
                             src='<%=require("./images/kusto.jpg")%>'
                             alt="Аватарка профиля"
                             />
-                        <button className="profile__btn-image-edit"></button>
+                        <button 
+                            className="profile__btn-image-edit"
+                            onClick={onEditAvatar}
+                            aria-label="Изменить аватарку"
+                        ></button>
                     </div>
                     <div className="profile__info">
                         <div className="profile__text">
@@ -27,7 +31,7 @@ function Main({onEditProfile, onAddPlace}) {
                 <button
                     className="profile__btn-add"
                     type="button"
-                    aria-label="Добавление карточки"
+                    aria-label="Добавить карточку"
                     onClick={onAddPlace}
                 ></button>
             </section>

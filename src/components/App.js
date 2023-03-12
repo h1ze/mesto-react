@@ -5,15 +5,19 @@ import Footer from "./Footer.js";
 import PopupWithForm from "./PopupWithForm.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
 
 
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
+  const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
+  
 
   return (
     <div className="page">
@@ -22,7 +26,7 @@ function App() {
         <Main
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
-          // onEditAvatar={}
+          onEditAvatar={handleEditAvatarClick}
         />
         <Footer />
         <EditProfilePopup 
@@ -30,6 +34,9 @@ function App() {
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
+        />
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
         />
     </div>
     <div className="popup popup_menu_profile">
