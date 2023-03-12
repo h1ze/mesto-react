@@ -56,31 +56,7 @@ function App() {
           onClose={closeAllPopups}
           selectedCard={selectedCard} 
         />
-    </div>
-    <template id="card">
-      <li className="element">
-        <img
-          alt="Изображение карточки"
-          className="element__image"
-        />
-        <button
-          className="element__button-delete"
-          type="button"
-          aria-label="Удалить"
-        ></button>
-        <div className="element__text">
-          <h2 className="element__title"></h2>
-          <div className="element__block-like">
-            <button
-              className="element__button-like"
-              type="button"
-              aria-label="Лайкнуть"
-            ></button>
-            <span className="element__counter-like"></span>
-          </div>
-        </div>
-      </li>
-    </template>
+      </div>
     </div>
   );
 }
