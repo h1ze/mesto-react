@@ -1,3 +1,4 @@
+import React from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
@@ -8,17 +9,27 @@ import AddPlacePopup from "./AddPlacePopup.js";
 
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+
+  const handleEditProfileClick = () => setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+  const handleAddPlaceClick = () => setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
+
   return (
     <div className="page">
       <div className="page__wrapper wrapper">
         <Header />
-        <Main />
+        <Main
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          // onEditAvatar={}
+        />
         <Footer />
         <EditProfilePopup 
-          isOpen={false}
+          isOpen={isEditProfilePopupOpen}
         />
         <AddPlacePopup
-          isOpen={true}
+          isOpen={isAddPlacePopupOpen}
         />
     </div>
     <div className="popup popup_menu_profile">

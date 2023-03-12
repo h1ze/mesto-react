@@ -1,4 +1,4 @@
-function Main() {
+function Main({onEditProfile, onAddPlace}) {
     return(
         <main>
             <section className="profile">
@@ -18,6 +18,7 @@ function Main() {
                                 className="profile__btn-edit"
                                 type="button"
                                 aria-label="Редактировать профиль"
+                                onClick={onEditProfile}
                             ></button>
                             <p className="profile__subtitle">Исследователь океана</p>
                         </div>
@@ -26,7 +27,8 @@ function Main() {
                 <button
                     className="profile__btn-add"
                     type="button"
-                    aria-label="Добавление профиля"
+                    aria-label="Добавление карточки"
+                    onClick={onAddPlace}
                 ></button>
             </section>
             <section className="elements">
