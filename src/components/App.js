@@ -47,7 +47,9 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
         />
-        <ImagePopup />
+        <ImagePopup
+          onClose={closeAllPopups} 
+        />
     </div>
     <template id="card">
       <li className="element">
