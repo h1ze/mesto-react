@@ -6,7 +6,7 @@ import PopupWithForm from "./PopupWithForm.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
-import ImagePopup from "./imagePopup.js";
+import ImagePopup from "./ImagePopup.js";
 
 
 
@@ -15,10 +15,15 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
-  const handleEditProfileClick = () => setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
-  const handleAddPlaceClick = () => setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
-  const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
+  const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
+  const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
+  const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
   
+  const closeAllPopups = () => {
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+  }
 
   return (
     <div className="page">
@@ -32,12 +37,15 @@ function App() {
         <Footer />
         <EditProfilePopup 
           isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
         />
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
         />
         <ImagePopup />
     </div>
