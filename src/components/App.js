@@ -7,6 +7,7 @@ import EditProfilePopup from "./EditProfilePopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import ImagePopup from "./ImagePopup.js";
+import Card from "./Card.js";
 
 
 
@@ -14,15 +15,18 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState([]);
 
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
   const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
+  const handleCardClick = (selectedCard) => setSelectedCard(selectedCard);
   
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setSelectedCard({});
   }
 
   return (
@@ -33,6 +37,7 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
+          onCardClick={handleCardClick}
         />
         <Footer />
         <EditProfilePopup 
@@ -48,7 +53,8 @@ function App() {
           onClose={closeAllPopups}
         />
         <ImagePopup
-          onClose={closeAllPopups} 
+          onClose={closeAllPopups}
+          selectedCard={selectedCard} 
         />
     </div>
     <template id="card">
