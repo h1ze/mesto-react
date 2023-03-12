@@ -22,8 +22,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
                 .catch((err) => {
                     console.log(err); // выведем ошибку в консоль
                 });
-        }
-    )
+        }, [])
 
     return(
         <main>
