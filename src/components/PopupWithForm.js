@@ -2,7 +2,7 @@ function PopupWithForm({name, title, children, onClose, isOpen}) {
     return(
         <div className={`${isOpen ? "popup_opened" : ""} popup popup_menu_${name}`}
             onClick={((evt) => {
-                (evt.target === evt.currentTarget) && onClose();
+                (evt.target === evt.currentTarget)  && onClose();
             })}
         >
             <div className="popup__container">
