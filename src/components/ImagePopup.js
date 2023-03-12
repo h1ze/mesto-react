@@ -1,7 +1,9 @@
 function ImagePopup({onClose, selectedCard}) {
     return(
         <div className={`${Object.keys(selectedCard).length !== 0 ? "popup_opened" : ""} popup popup_menu_image popup_background_darkest`}
-             onClick={onClose}
+             onClick={((evt) => {
+              (evt.target === evt.currentTarget) && onClose();
+             })}
         >
         <div className="popup__container">
           <button 
