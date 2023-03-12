@@ -6,7 +6,7 @@ import PopupWithForm from "./PopupWithForm.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
-import i
+import ImagePopup from "./imagePopup.js";
 
 
 
@@ -39,134 +39,7 @@ function App() {
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
         />
-    </div>
-    <div className="popup popup_menu_profile">
-        <div className="popup__container">
-          <button className="popup__close btn-shut-profile" type="button"></button>
-          <div className="popup__content">
-            <h2 className="popup__title">Редактировать профиль</h2>
-            <form className="popup__form form" name="profile-form">
-              <input
-                id = "profile-name"
-                className="form__input form__input_value_name"
-                type="text"
-                value=""
-                name="name"
-                tabIndex="1"
-                placeholder="Имя"
-                minLength="2"
-                maxLength="40"
-                required
-                />
-              <span className="profile-name-error form__error"></span>
-              <input
-                id = "profile-info"
-                className="form__input form__input_value_info"
-                type="text"
-                value=""
-                name="about"
-                tabIndex="2"
-                placeholder="О себе"
-                minLength="2"
-                maxLength="200"
-                required
-                />
-              <span className="profile-info-error form__error"></span>
-              <button
-                className="form__button profile-submit"
-                type="submit" tabIndex="3"
-              >Сохранить</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div className="popup popup_menu_card">
-        <div className="popup__container">
-          <button className="popup__close btn-shut-card" type="button"></button>
-          <div className="popup__content">
-            <h2 className="popup__title">Новое место</h2>
-            <form className="popup__form form" name="card-form">
-              <input
-                id="card-title"
-                className="form__input form__input_value_title"
-                type="text"
-                value=""
-                name="name"
-                tabIndex="1"
-                placeholder="Название"
-                minLength="2"
-                maxLength="30"
-                required
-                />
-              <span className="card-title-error form__error"></span>
-              <input
-                id="card-url"
-                className="form__input form__input_value_link"
-                type="url"
-                value=""
-                name="link"
-                tabIndex="2"
-                placeholder="Ссылка на картинку"
-                required
-                />
-              <span className="card-url-error form__error"></span>
-              <button
-                className="form__button card-submit"
-                type="submit" tabIndex="3"
-              >Сохранить</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div className="popup popup_menu_image popup_background_darkest">
-        <div className="popup__container">
-          <button className="popup__close btn-shut-image" type="button"></button>
-          <div className="popup__holder-image">
-            <figure className="popup__figure">
-              <img className="popup__image" alt="" />
-              <figcaption className="popup__caption"></figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
-      <div className="popup popup_menu_delete">
-        <div className="popup__container">
-          <button className="popup__close btn-shut-delete" type="button"></button>
-          <div className="popup__content">
-            <h2 className="popup__title popup__title_type_confirmation">Вы уверены?</h2>
-            <form className="popup__form form" name="delete-form">
-              <button
-                className="form__button form__button_type_confirmation delete-submit"
-                type="submit" tabIndex="1"
-              >Да</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    <div className="popup popup_menu_avatar">
-      <div className="popup__container">
-        <button className="popup__close btn-shut-avatar" type="button"></button>
-        <div className="popup__content">
-          <h2 className="popup__title">Обновить аватар</h2>
-          <form className="popup__form form" name="avatar-form">
-            <input
-              id = "profile-avatar"
-              className="form__input form__input_value_avatar"
-              type="url"
-              value=""
-              name="avatar"
-              tabIndex="1"
-              placeholder="Ссылка на картинку"
-              required
-              />
-            <span className="profile-avatar-error form__error"></span>
-            <button
-              className="form__button avatar-submit"
-              type="submit" tabIndex="2"
-            >Сохранить</button>
-          </form>
-        </div>
-      </div>
+        <ImagePopup />
     </div>
     <template id="card">
       <li className="element">
