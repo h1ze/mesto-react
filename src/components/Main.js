@@ -1,14 +1,14 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-import api from "../utils/api.js";
+// import api from "../utils/api.js";
 import Card from "./Card.js";
 
 
-function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
+function Main({cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick,onCardLike, onCardDelete}) {
     // const [userName, setUserName] = React.useState("");
     // const [userDescription, setUserDescription] = React.useState("");
     // const [userAvatar, setUserAvatar] = React.useState("");
-    const [cards, setCards] = React.useState([]);
+    // const [cards, setCards] = React.useState([]);
 
     const currentUser = React.useContext(CurrentUserContext); // Подписываемся на контекст CurrentUserContext
 
@@ -27,15 +27,15 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
     //             });
     //     }, [])
 
-    React.useEffect(() => {
-        api.getInitialCards()
-          .then((initialCards) => {
-            setCards(initialCards);
-          })
-          .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
-        });
-      }, []);
+    // React.useEffect(() => {
+    //     api.getInitialCards()
+    //       .then((initialCards) => {
+    //         setCards(initialCards);
+    //       })
+    //       .catch((err) => {
+    //         console.log(err); // выведем ошибку в консоль
+    //     });
+    //   }, []);
 
     return(
         <main>
@@ -76,7 +76,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
             </section>
             <section className="elements">
                 <ul className="elements__list">
-                    {cards.map(card => <Card key={card._id} card={card} onCardClick={onCardClick} />)}
+                    {cards.map(card => <Card key={card._id} card={card} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete}/>)}
                 </ul>
             </section>
         </main>

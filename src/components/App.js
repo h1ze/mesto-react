@@ -21,34 +21,59 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState('');
   const [cards, setCards] = React.useState([]);
 
-  React.useEffect(() => {
-    api.getProfileData()
-      .then((profileData) => {
-        setCurrentUser(profileData);
-      })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   api.getProfileData()
+  //     .then((profileData) => {
+  //       setCurrentUser(profileData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err); // выведем ошибку в консоль
+  //   });
+  // }, []);
 
-    // React.useEffect(
-    //     () => {
-    //         Promise.all([api.getInitialCards(), api.getProfileData()])
-    //             .then(([initialCards, profileData]) => {
-    //                 // const userID = profileData._id;
-    //                 setCurrentUser(profileData);
-    //                 setCards(initialCards);
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err); // выведем ошибку в консоль
-    //             });
-    //     }, [])
+    React.useEffect(
+        () => {
+            Promise.all([api.getInitialCards(), api.getProfileData()])
+                .then(([initialCards, profileData]) => {
+                    // const userID = profileData._id;
+                    setCards(initialCards);
+                    setCurrentUser(profileData);
+                })
+                .catch((err) => {
+                    console.log(err); // выведем ошибку в консоль
+                });
+        }, [])
 
 
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
   const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
   const handleCardClick = (selectedCard) => setSelectedCard(selectedCard);
+
+  function handleCardLike(card) {
+    // проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+          setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  }
+
+  function handleCardDelete(card) {
+    api.deleteCard(card._id)
+      .then(() => {
+        setCards(cards.filter(c => c._id !== card._id))
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  };
+
   
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
@@ -63,10 +88,13 @@ function App() {
         <div className="page__wrapper wrapper">
           <Header />
           <Main
+            cards={cards}
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
             onEditAvatar={handleEditAvatarClick}
             onCardClick={handleCardClick}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
           />
           <Footer />
           <EditProfilePopup 
