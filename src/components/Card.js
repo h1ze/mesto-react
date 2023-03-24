@@ -1,8 +1,22 @@
+import React from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext.js";
+
 function Card({card, onCardClick}) {
 
-    const handleClick = () => {
+    const currentUser = React.useContext(CurrentUserContext); 
+    const isOwn = card.owner._id === currentUser._id;
+
+    // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+    // Создаём переменную, которую после зададим в `className` для кнопки лайка
+    const cardLikeButtonClassName = ( 
+        `element__button-like ${isLiked && 'element__button-like_active'}` 
+    );
+
+    const handleCardClick = () => {
        onCardClick(card);
-    }  
+    };  
 
     return(
         <li className="element">
@@ -10,18 +24,20 @@ function Card({card, onCardClick}) {
                 alt={card.name}
                 className="element__image"
                 src={card.link}
-                onClick={handleClick}
+                onClick={handleCardClick}
             />
-            <button
-                className="element__button-delete"
-                type="button"
-                aria-label="Удалить"
-            ></button>
+            {isOwn && <button 
+                        className="element__button-delete" 
+                        onClick={handleDeleteClick} 
+                        type="button"
+                        aria-label="Удалить"
+                        />
+            } 
             <div className="element__text">
                 <h2 className="element__title">{card.name}</h2>
                     <div className="element__block-like">
                         <button
-                            className="element__button-like"
+                            className={cardLikeButtonClassName}
                             type="button"
                             aria-label="Лайкнуть"
                         ></button>

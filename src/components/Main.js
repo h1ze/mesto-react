@@ -1,28 +1,41 @@
 import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import api from "../utils/api.js";
 import Card from "./Card.js";
 
 
 function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
-    const [userName, setUserName] = React.useState("");
-    const [userDescription, setUserDescription] = React.useState("");
-    const [userAvatar, setUserAvatar] = React.useState("");
+    // const [userName, setUserName] = React.useState("");
+    // const [userDescription, setUserDescription] = React.useState("");
+    // const [userAvatar, setUserAvatar] = React.useState("");
     const [cards, setCards] = React.useState([]);
 
-    React.useEffect(
-        () => {
-            Promise.all([api.getInitialCards(), api.getProfileData()])
-                .then(([initialCards, profileData]) => {
-                    // const userID = profileData._id;
-                    setCards(initialCards);
-                    setUserName(profileData.name);
-                    setUserDescription(profileData.about);
-                    setUserAvatar(profileData.avatar);
-                })
-                .catch((err) => {
-                    console.log(err); // выведем ошибку в консоль
-                });
-        }, [])
+    const currentUser = React.useContext(CurrentUserContext); // Подписываемся на контекст CurrentUserContext
+
+    // React.useEffect(
+    //     () => {
+    //         Promise.all([api.getInitialCards(), api.getProfileData()])
+    //             .then(([initialCards, profileData]) => {
+    //                 // const userID = profileData._id;
+    //                 setCards(initialCards);
+    //                 setUserName(profileData.name);
+    //                 setUserDescription(profileData.about);
+    //                 setUserAvatar(profileData.avatar);
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err); // выведем ошибку в консоль
+    //             });
+    //     }, [])
+
+    React.useEffect(() => {
+        api.getInitialCards()
+          .then((initialCards) => {
+            setCards(initialCards);
+          })
+          .catch((err) => {
+            console.log(err); // выведем ошибку в консоль
+        });
+      }, []);
 
     return(
         <main>
@@ -32,7 +45,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
                         <img
                             className="profile__image"
                             // style={{ backgroundImage: `url(${userAvatar})` }}
-                            src={userAvatar} 
+                            src={currentUser.avatar} 
                             alt="Аватарка профиля"
                             />
                         <button 
@@ -43,14 +56,14 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
                     </div>
                     <div className="profile__info">
                         <div className="profile__text">
-                            <h1 className="profile__title">{userName}</h1>
+                            <h1 className="profile__title">{currentUser.name}</h1>
                             <button
                                 className="profile__btn-edit"
                                 type="button"
                                 aria-label="Редактировать профиль"
                                 onClick={onEditProfile}
                             ></button>
-                            <p className="profile__subtitle">{userDescription}</p>
+                            <p className="profile__subtitle">{currentUser.about}</p>
                         </div>
                     </div>
                 </div>
