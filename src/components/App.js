@@ -85,6 +85,17 @@ function App() {
       });
   }
 
+  function handleUpdateAvatar(data) {
+    api.setAvatar(data)
+      .then((responseProfileData)=> {
+        setCurrentUser(responseProfileData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  }
+
   
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
@@ -120,6 +131,7 @@ function App() {
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar}
           />
           <ImagePopup
             onClose={closeAllPopups}
