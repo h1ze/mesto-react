@@ -85,10 +85,21 @@ function App() {
       });
   }
 
-  function handleUpdateAvatar(data) {
-    api.setAvatar(data)
+  function handleUpdateAvatar(avatarLink) {
+    api.setAvatar(avatarLink)
       .then((responseProfileData)=> {
         setCurrentUser(responseProfileData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  }
+
+  function handleAddPlaceSubmit(newCardData) {
+    api.setNewCard(newCardData)
+      .then((responseNewCardData)=> {
+        setCards([responseNewCardData, ...cards]); 
         closeAllPopups();
       })
       .catch((err) => {
@@ -127,6 +138,7 @@ function App() {
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
+            onAddPlace={handleAddPlaceSubmit}
           />
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
