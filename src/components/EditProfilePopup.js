@@ -1,8 +1,10 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
-function EditProfilePopup({isOpen, onClose}) {
+function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
 
+    const currentUser = React.useContext(CurrentUserContext);
     const [profileName, setProfileName] = React.useState('');
     const [profileDescription, setProfileDescription] = React.useState('');
 
@@ -11,13 +13,30 @@ function EditProfilePopup({isOpen, onClose}) {
         // используйте e.target.name и e.target.value
         // [e.target.name]:  e.target.value
         setProfileName(e.target.value);
-    }
+    };
 
     const handleProfileDescriptionInputChange = (e) => {
         // установите нужное состояние
         // используйте e.target.name и e.target.value
         setProfileDescription(e.target.value);
-    }
+    };
+
+    const handleSubmit = (e) => {
+        // Запрещаем браузеру переходить по адресу формы
+        e.preventDefault();
+      
+        // Передаём значения управляемых компонентов во внешний обработчик
+        onUpdateUser({
+          name: profileName,
+          about: profileDescription,
+        });
+      } 
+
+    React.useEffect(() => {
+        setProfileName(currentUser.name);
+        setProfileDescription(currentUser.about);
+      }, [currentUser]); 
+
 
     return (
         <PopupWithForm
@@ -25,6 +44,7 @@ function EditProfilePopup({isOpen, onClose}) {
             title = "Редактировать профиль"
             isOpen = {isOpen}
             onClose = {onClose}
+            onSubmit = {handleSubmit}
         >
             <input
                 id = "profile-name"

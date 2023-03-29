@@ -74,6 +74,17 @@ function App() {
       });
   };
 
+  function handleUpdateUser(profileData) {
+    api.setProfileData(profileData)
+      .then((responseProfileData)=> {
+        setCurrentUser(responseProfileData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  }
+
   
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
@@ -100,6 +111,7 @@ function App() {
           <EditProfilePopup 
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
+            onUpdateUser={handleUpdateUser}
           />
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}

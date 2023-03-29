@@ -1,4 +1,4 @@
-function PopupWithForm({name, title, children, onClose, isOpen}) {
+function PopupWithForm({name, title, children, onClose, isOpen, onSubmit}) {
     return(
         <div className={`${isOpen ? "popup_opened" : ""} popup popup_menu_${name}`}
             onClick={((evt) => {
@@ -13,7 +13,7 @@ function PopupWithForm({name, title, children, onClose, isOpen}) {
                 ></button>
                 <div className="popup__content">
                     <h2 className="popup__title">{title}</h2>
-                    <form className="popup__form form" name={`${name}-form`}>
+                    <form className="popup__form form" name={`${name}-form`} onSubmit={onSubmit}>
                         {children}
                         <button
                             className={`form__button ${name}-submit`}
