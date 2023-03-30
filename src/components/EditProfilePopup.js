@@ -50,7 +50,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
                 id = "profile-name"
                 className="form__input form__input_value_name"
                 type="text"
-                value={profileName}
+                value={profileName || ""}
                 name="name"
                 tabIndex="1"
                 placeholder="Имя"
@@ -64,7 +64,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
                 id = "profile-info"
                 className="form__input form__input_value_info"
                 type="text"
-                value={profileDescription}
+                value={profileDescription || ""}
                 name="about"
                 tabIndex="2"
                 placeholder="О себе"
