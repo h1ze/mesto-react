@@ -43,6 +43,12 @@ const handleSubmit = (e) => {
     });
 };
 
+React.useEffect(() => {
+    setCardTitle('');
+    setCardLink('');
+}, [isOpen]);
+
+
     return (
         <PopupWithForm
             name = "card"
