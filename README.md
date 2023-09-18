@@ -1,5 +1,7 @@
 # Проект: Место (React)
 
+![Превью](./src/images/promo.png)
+
 ### Проект создан в рамках практической работы при обучении в Яндекс практикуме. Проект представляет собой перенос на React ранее созданного проекта Место. Стек:
 
 - HTML;
@@ -19,5 +21,5 @@
 ---
 
 ### [Ссылка на макет Figma.](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-### [Ссылка на проект.](https://h1ze.github.io/mesto-react/)
 
+### [Ссылка на проект.](https://h1ze.github.io/mesto-react/)
